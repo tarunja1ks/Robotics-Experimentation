@@ -1,0 +1,2 @@
+10/22: tested out the cylinder simulation, tried to add text witht he velocities and add a reset button
+10/29: We started working on some of the pid Stuff lets try to finish making path creation in the simulation so people can use particle filter algorithim in the future and hopefully visualize it 

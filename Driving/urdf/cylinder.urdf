@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+   2 <robot name="myfirst">
+   3   <link name="base_link">
+   4     <visual>
+   5       <geometry>
+   6         <cylinder length="0.5" radius="0.25"/>
+   7       </geometry>
+   8     </visual>
+        <collision>
+          <geometry>
+            <cylinder radius="1" length="2.0"/>  <!-- Collision shape matching visual shape -->
+          </geometry>
+        </collision>
+   9   </link>
+  10 </robot>
