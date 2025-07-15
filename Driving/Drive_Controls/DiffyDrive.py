@@ -131,12 +131,15 @@ class PybulletEnvironment:
             print("Read failed")
             return
         
-        
+# /home/tarunj/Documents/Robotics/Robotics-Experimentation/Driving/urdf/jackal.urdf
         
 class Robot:
     def __init__(self):
-        self.robot_id = p.loadURDF("./Driving/urdf/jackal.urdf", basePosition=[0, 0, 0.2])
-        
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(script_dir)
+        urdf_path = os.path.join(project_root,"urdf", "jackal.urdf")
+        print(urdf_path)
+        self.robot_id = p.loadURDF(urdf_path, basePosition=[0, 0, 0.2])
         self.position=self.localize()
         self.wheels = [1,2,3,4]   # All four wheels
         self.wheels_left=[1,3]
