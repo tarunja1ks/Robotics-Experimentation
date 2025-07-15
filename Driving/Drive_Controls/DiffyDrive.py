@@ -19,7 +19,7 @@ from Driving import Bezier
 from Driving import PurePursuit
 
 logging.basicConfig(
-    filename="./Driving/Simulation_logging/Diffy_simulation.log",
+    filename="Simulation_logging/Diffy_simulation.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -28,7 +28,7 @@ logging.basicConfig(
 class PybulletEnvironment:
     def __init__(self):
         logging.info("Initializing PyBullet environment...")
-        self.physics_client = p.connect(p.GUI)
+        self.physics_client = p.connect(p.GUI, options="--opengl2")
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0, 0, -9.81)
         self.plane_id = p.loadURDF("plane.urdf")
