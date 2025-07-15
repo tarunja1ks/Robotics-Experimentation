@@ -64,7 +64,7 @@ class PybulletEnvironment:
         self.linear_pid=PID(kp=1.0, ki=0, kd=0.01)
         self.angular_pid=PID(kp=1.0, ki=0, kd=0.01)
         self.path.get_Path()
-        self.path.draw_bezier_path() # drawing the path the robot will follow
+        # self.path.draw_bezier_path() # drawing the path the robot will follow
         self.follower=PurePursuit(self.jackal_robot,self.path.get_Path(1000),0.8)
         
         while True:
@@ -86,10 +86,10 @@ class PybulletEnvironment:
                 
                 
                 # showing the lookahead intersection point
-                p.addUserDebugLine([self.x_goal,self.y_goal-0.1,0.05],
-                                    [self.x_goal,self.y_goal+0.1 , 0.05],
-                                    lineColorRGB=[1, 0, 0], 
-                                    lineWidth=300)
+                # p.addUserDebugLine([self.x_goal,self.y_goal-0.1,0.05],
+                #                     [self.x_goal,self.y_goal+0.1 , 0.05],
+                #                     lineColorRGB=[1, 0, 0], 
+                #                     lineWidth=300)
             
                 self.x_error=self.x_goal-self.current_x
                 self.y_error=self.y_goal-self.current_y
@@ -103,7 +103,7 @@ class PybulletEnvironment:
                 self.jackal_robot.inverse_kinematics(self.linear_velocity,self.angular_velocity)
                 self.jackal_robot.setVelocity()
                 
-                print(self.x_goal, self.y_goal)
+                # print(self.x_goal, self.y_goal)
                 
                 
                 
@@ -128,7 +128,7 @@ class PybulletEnvironment:
             self.linear_pid.update(float(p.readUserDebugParameter(self.kp_linear)),float(p.readUserDebugParameter(self.ki_linear)),float(p.readUserDebugParameter(self.kd_linear)))
             self.angular_pid.update(float(p.readUserDebugParameter(self.kp_angular)),float(p.readUserDebugParameter(self.ki_angular)),float(p.readUserDebugParameter(self.kd_angular)))
         except:
-            print("Read failed")
+            # print("Read failed")
             return
         
 # /home/tarunj/Documents/Robotics/Robotics-Experimentation/Driving/urdf/jackal.urdf

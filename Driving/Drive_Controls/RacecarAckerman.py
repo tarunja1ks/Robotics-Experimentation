@@ -3,6 +3,7 @@ import pybullet_data
 import logging
 import time
 import numpy as np
+import os
 
 # Configure logging
 logging.basicConfig(
@@ -15,7 +16,7 @@ logging.basicConfig(
 class PybulletEnvironment:
     def __init__(self):
         logging.info("Initializing PyBullet environment...")
-        self.physics_client = p.connect(p.GUI)
+        self.physics_client =p.connect(p.GUI, options="--opengl2")
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0, 0, -9.81)
         # p.changeDynamics(
@@ -128,7 +129,10 @@ class PybulletEnvironment:
 class Cylinder:
     def __init__(self):
         cylinder_height = 2
-        self.cylinder_id = p.loadURDF("./Driving/urdf/cylinder.urdf", basePosition=[5, 5, cylinder_height / 2])
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(script_dir)
+        urdf_path = os.path.join(project_root,"urdf", "cylinder.urdf")
+        self.cylinder_id = p.loadURDF(urdf_path, basePosition=[5, 5, cylinder_height / 2])
         self.position = self.getPosition()
 
     def getPosition(self):
@@ -147,7 +151,10 @@ class Cylinder:
 
 class Robot:
     def __init__(self):
-        self.robot_id = p.loadURDF("./Driving/urdf/racecar.urdf", basePosition=[0, 0, 0.2])
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(script_dir)
+        urdf_path = os.path.join(project_root,"urdf", "racecar.urdf")
+        self.robot_id = p.loadURDF(urdf_path, basePosition=[0, 0, 0.2])
         self.position = self.getPosition()
 
         # Retrieve wheel and steering joint indices
